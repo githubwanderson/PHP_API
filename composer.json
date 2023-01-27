@@ -2,7 +2,7 @@
     "name": "wanderson/api",
     "autoload": {
         "psr-4": {
-            "Wanderson\\Api\\": "src/"
+            "App\\": "App/"
         }
     },
     "authors": [
