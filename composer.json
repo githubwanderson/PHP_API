@@ -1,0 +1,16 @@
+{
+    "name": "wanderson/api",
+    "autoload": {
+        "psr-4": {
+            "Wanderson\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wanderson",
+            "email": "emailwandersonalves@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
