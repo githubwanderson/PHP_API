@@ -1,9 +1,17 @@
 <?php
 
-use App\Database\Conexao;
+include 'constantes.php';
 
-include './vendor/autoload.php';
+use App\Resource\RequestValidationResource;
+use App\Utility\RoutesUtility;
 
-$db = new Conexao;
+$request = new RequestValidationResource;
 
-$db->teste();
+RoutesUtility::getRoute();
+
+
+
+// public function teste()
+// {
+//     echo 'teste';
+// }
