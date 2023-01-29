@@ -6,5 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Resource\\RequestValidationResource' => $baseDir . '/App/Resource/RequestValidationResource.php',
+    'App\\Resource\\TokenValidationResource' => $baseDir . '/App/Resource/TokenValidationResource.php',
+    'App\\Utility\\ConstantsUtility' => $baseDir . '/App/Utility/ConstantsUtility.php',
+    'App\\Utility\\RoutesUtility' => $baseDir . '/App/Utility/RoutesUtility.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

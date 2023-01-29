@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit6dfac1105e5695063f48ed2482d2c677
 {
     public static $prefixLengthsPsr4 = array (
+        'D' => 
+        array (
+            'Db\\' => 3,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -14,6 +18,10 @@ class ComposerStaticInit6dfac1105e5695063f48ed2482d2c677
     );
 
     public static $prefixDirsPsr4 = array (
+        'Db\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Database',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/App',
@@ -21,6 +29,10 @@ class ComposerStaticInit6dfac1105e5695063f48ed2482d2c677
     );
 
     public static $classMap = array (
+        'App\\Resource\\RequestValidationResource' => __DIR__ . '/../..' . '/App/Resource/RequestValidationResource.php',
+        'App\\Resource\\TokenValidationResource' => __DIR__ . '/../..' . '/App/Resource/TokenValidationResource.php',
+        'App\\Utility\\ConstantsUtility' => __DIR__ . '/../..' . '/App/Utility/ConstantsUtility.php',
+        'App\\Utility\\RoutesUtility' => __DIR__ . '/../..' . '/App/Utility/RoutesUtility.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

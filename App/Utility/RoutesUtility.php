@@ -30,5 +30,4 @@ class RoutesUtility
         $uri = str_replace('/' . DIR_PROJETO, '', $_SERVER['REQUEST_URI']);
         return explode('/',trim($uri,'/'));
     } 
-
 }

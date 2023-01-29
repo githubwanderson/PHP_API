@@ -1,13 +1,18 @@
 <?php
 
-include 'constantes.php';
+include 'constants.php';
 
 use App\Resource\RequestValidationResource;
 use App\Utility\RoutesUtility;
 
-$request = new RequestValidationResource;
+try {
+    $request = new RequestValidationResource(RoutesUtility::getRoute());
+    $request = $request->process();
+} catch (Exception $e) {
+    // Criar um retorno JSON padrão Http
+    return 'Error index - ' . $e->getMessage();
+}
 
-RoutesUtility::getRoute();
 
 
 
