@@ -2,26 +2,27 @@
 
 namespace App\Resource;
 
-use Db\Db;
+use App\Service\TokenService;
+
+use App\Utility\ConstantsUtility;
+
+use Exception;
 
 class TokenValidationResource
 {   
-    private const TABLE = 'tokens';
-    private Db $Db;
+    private object $TokenService;
 
-    public function __construct($request = [])
+    public function __construct()
     {
-        $this->Db = new DB(self::TABLE);
+        $this->TokenService = new TokenService();
     }
 
-    public function validarToken($token)
-    {
-        $r = $this->Db->findAll()->fetch(\PDO::FETCH_ASSOC);
-        var_dump($r);
-        exit;
+    public function validarToken()
+    {  
+        if(isset(getallheaders()['Authorization'])){
+            $token = str_replace([' ', 'Bearer'], '', getallheaders()['Authorization']);
+            return $this->TokenService->findToken($token);
+        }
+        return ConstantsUtility::ERROR_TOKEN_RESOURCE_AUTORIZATION;              
     }
-
-
-
-
 }

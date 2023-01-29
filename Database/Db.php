@@ -14,6 +14,8 @@ class Db extends Connect
         $this->table = $table;
     }
 
+    
+
     /**
      * Responsável por buscar muitos registros
      * @param string $where

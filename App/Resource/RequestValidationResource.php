@@ -19,6 +19,14 @@ class RequestValidationResource
     {
         $return = ConstantsUtility::ERROR_TYPE_ROUTE;
         if(in_array($this->request['method'], ConstantsUtility::TYPE_REQUEST, true) ) {
+            
+            $vt = $this->validationTokenRequest();
+
+            if($vt !== true){
+                echo 'erro -> ' . $vt; exit;
+            }
+
+            echo 'ok'; exit;
             $return = $this->directRequest();
         }
         return $return;
@@ -26,9 +34,12 @@ class RequestValidationResource
 
     public function directRequest()
     {
-        // var_dump(getallheaders());
-        // exit;
-        $this->TokenValidationResource->validarToken('tk01');
+          
+    }
+
+    public function validationTokenRequest()
+    {
+        return $this->TokenValidationResource->validarToken();
     }
 
 
