@@ -6,9 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Repository\\TokenRepository' => $baseDir . '/App/Repository/TokenRepository.php',
     'App\\Resource\\RequestValidationResource' => $baseDir . '/App/Resource/RequestValidationResource.php',
     'App\\Resource\\TokenValidationResource' => $baseDir . '/App/Resource/TokenValidationResource.php',
+    'App\\Service\\TokenService' => $baseDir . '/App/Service/TokenService.php',
     'App\\Utility\\ConstantsUtility' => $baseDir . '/App/Utility/ConstantsUtility.php',
     'App\\Utility\\RoutesUtility' => $baseDir . '/App/Utility/RoutesUtility.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Db\\Connect' => $baseDir . '/Database/Connect.php',
+    'Db\\Db' => $baseDir . '/Database/Db.php',
+    'Route\\Routes' => $baseDir . '/Route/Routes.php',
 );

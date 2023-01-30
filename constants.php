@@ -10,6 +10,16 @@ define('DIR', __DIR__);
 define('DIR_PROJETO', 'api_mplace');
 
 /**
- * Errors
+ *  Módulos utilizados
  */
-define('MSG_ERROR_ROUTE', 'Rota não permitida!');
+public const MODULES = ['API'];
+
+/**
+ *  Módulos
+ */
+public const API = 'API';
+
+/**
+ *  Erros
+ */
+public const ERROR_GENERIC = 'Erro genérico!';

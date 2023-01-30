@@ -13,9 +13,10 @@ class RoutesUtility
         $url = self::getUrl();
 
         $request = [];
-        $request['route'] = strtoupper($url[0]);
-        $request['resource'] = $url[1] ?? null;
-        $request['id'] = $url[2] ?? null;
+        $request['module'] = strtoupper($url[0]);
+        $request['route'] = strtoupper($url[1]);
+        $request['resource'] = $url[2] ?? null;
+        $request['id'] = $url[3] ?? null;
         $request['method'] = $_SERVER['REQUEST_METHOD'];
 
         return $request;
