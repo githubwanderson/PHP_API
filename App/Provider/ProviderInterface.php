@@ -20,5 +20,5 @@ interface ProviderInterface
      * Request: order/create
      * 
      */
-	public function create();
+	public function create($post);
 }
