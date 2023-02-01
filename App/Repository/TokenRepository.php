@@ -19,7 +19,13 @@ class TokenRepository
         $this->Db = new DB(self::TABLE);
     }
 
-    public function findToken($token)
+    /**
+     * Se comunica com DB e verifica se ha Token
+     * @param Baren
+     * @return Boolean
+     * @return String
+     */
+    public function findById($token)
     {
     	$where = "TOKEN = \"$token\" AND ATIVO = 1";
 
@@ -28,6 +34,4 @@ class TokenRepository
 	    };
 	    return ConstantsUtility::ERROR_TOKEN_DB;
     }
-
-
 }

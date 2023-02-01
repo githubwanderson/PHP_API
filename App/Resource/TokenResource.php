@@ -3,12 +3,9 @@
 namespace App\Resource;
 
 use App\Service\TokenService;
-
 use App\Utility\ConstantsUtility;
 
-use Exception;
-
-class TokenValidationResource
+class TokenResource
 {   
     private object $TokenService;
 
@@ -17,7 +14,12 @@ class TokenValidationResource
         $this->TokenService = new TokenService();
     }
 
-    public function validarToken()
+    /**
+     * Verifica se existe Token
+     * @return Boolean
+     * @return String 
+     */
+    public function validation()
     {  
         if(isset(getallheaders()['Authorization'])){
             $token = str_replace([' ', 'Bearer'], '', getallheaders()['Authorization']);

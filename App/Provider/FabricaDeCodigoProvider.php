@@ -2,8 +2,6 @@
 
 namespace App\Provider;
 
-use App\Provider\FabricaDeCodigoProvider;
-
 class FabricaDeCodigoProvider implements ProviderInterface
 {
 	private const AUTHORIZATION_BEARER = 'TESTE-12345';
@@ -11,6 +9,7 @@ class FabricaDeCodigoProvider implements ProviderInterface
 	private const GET_PRODUCT = 'users/';
 	private const GET_ORDER = 'albums/';
 	private const GET = 'GET';
+	private const POST = 'POST';
 
 	private $curl;
 	private $headers = [
@@ -25,7 +24,7 @@ class FabricaDeCodigoProvider implements ProviderInterface
 
 	/**
      * Request: order/getById
-     * 
+	 * 
      */
 	public function getById($id)
 	{
@@ -46,15 +45,12 @@ class FabricaDeCodigoProvider implements ProviderInterface
      */
 	public function create($post)
 	{
-		//VALIDAR DADOS E FORMATO DO POST PARA API
-		
-		
 		curl_setopt_array($this->curl, [
 			CURLOPT_URL 			=> self::URL_PROVIDER . self::GET_ORDER,
-			CURLOPT_CUSTOMREQUEST 	=> $post,
+			CURLOPT_CUSTOMREQUEST 	=> self::POST,
 			CURLOPT_RETURNTRANSFER 	=> true,
 			CURLOPT_HTTPHEADER		=> $this->headers,
-			CURLOPT_POSTFIELDS		=> $post
+			CURLOPT_POSTFIELDS		=> json_encode($post)
 		]);
 		$result = curl_exec($this->curl);
 		curl_close($this->curl);
@@ -67,11 +63,15 @@ class FabricaDeCodigoProvider implements ProviderInterface
      */
 	public function get()
 	{
-		curl_setopt($this->curl, CURLOPT_URL, self::URL_PROVIDER . self::GET_PRODUCT);
-		curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'GET');
-		curl_exec($this->curl);
+		curl_setopt_array($this->curl, [
+			CURLOPT_URL 			=> self::URL_PROVIDER . self::GET_ORDER,
+			CURLOPT_CUSTOMREQUEST 	=> self::GET,
+			CURLOPT_RETURNTRANSFER 	=> true,
+			CURLOPT_HTTPHEADER		=> $this->headers
+		]);
+		$result = curl_exec($this->curl);
 		curl_close($this->curl);
-		return $this->curl;
+		return $result;
 	}
 
 }

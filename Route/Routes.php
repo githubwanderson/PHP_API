@@ -4,24 +4,27 @@ namespace Route;
 
 class Routes
 {
-    public $module;
-    public $route;
-    public $resource;
-    public $id;
-    public $method;
+    private $route;
+    private $resource;
+    private $id;
+    private $method;
+
+    public function __construct()
+    {
+        $this->config();
+    }
 
     /**
      * 
      * @return array
      */
-    public static function configRoute()
+    private function config()
     {
         $url = self::getUrl();
 
-        $this->setModule(strtoupper($url[0] ?? null));
-        $this->setRoute(strtoupper($url[1] ?? null));
-        $this->setResource($url[2] ?? null);
-        $this->setId($url[3] ?? null);
+        $this->setRoute($url[0] ?? null);
+        $this->setResource($url[1] ?? null);
+        $this->setId($url[2] ?? null);
         $this->setMethod($_SERVER['REQUEST_METHOD']);
     }
 
@@ -39,19 +42,14 @@ class Routes
      * Setters
      * 
      */
-    private function setModule($module)
-    {
-        $this->module = $module;
-    }
-
     private function setRoute($route)
     {
-        $this->route = $route;     
+        $this->route = strtoupper($route);     
     }
 
     private function setResource($resource)
     {
-        $this->resource = $resource;
+        $this->resource = strtoupper($resource);
     }
 
     private function setId($id)
@@ -68,11 +66,6 @@ class Routes
      * Getters
      * 
      */
-    public function getModule()
-    {
-        return $this->module;
-    }
-
     public function getRoute()
     {
         return $this->route;     

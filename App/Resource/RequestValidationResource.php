@@ -3,100 +3,112 @@
 namespace App\Resource;
 
 use App\Utility\ConstantsUtility;
+use Route\Routes;
 
 class RequestValidationResource
 {   
-    private object $TokenValidationResource;
-    private array $request; 
-
-    public function __construct($request = [])
+    private Routes $request;
+    private $dataPost;
+    
+    public function __construct(Routes $request)
     {
-        $this->TokenValidationResource = new TokenValidationResource();
         $this->request = $request;
     }
-
+    
     /**
      * Responsável por validar method de entrada com methods aceitos
-     * 
+     * @return get()|post()|false
      */
     public function process()
     {
         $return = ConstantsUtility::ERROR_TYPE_REQUEST;
-        if(in_array($this->request['module'], ConstantsUtility::TYPE_REQUEST, true) ) {
+        if(in_array($this->request->getMethod(), ConstantsUtility::TYPE_REQUEST, true) ) {
             
-            // $return = $this->validationTokenRequest();
-            // if($return !== true){
-            //     return $return; 
-            // }
+            $return = $this->validationTokenRequest();
+            if($return !== true){
+                return $return; 
+            }
 
-            $method = strtolower($this->request['method']);
-            return $this->$method();
+            $method = strtolower($this->request->getMethod());
+            $return = $this->$method();
         }
         return $return;
     }
 
     /**
-     * Responsável por efetuar o tratamento pelo tipo request
-     * 
-     */
-    // public function directRequest()
-    // {
-    //     if($this->request['method'] === ConstantsUtility::POST) {
-    //         return 'Validar dados POST';     
-    //     }
-    //     $method = strtolower($this->request['method']);
-    //     return $this->$method();
-    // }
-
-    /**
-     * Solicita a validação do Token
-     * 
-     */
-    public function validationTokenRequest()
-    {
-        return $this->TokenValidationResource->validarToken();
-    }
-
-    /**
      * Tratamento tipo get
-     * 
-     */
+     * @return Json|String|false
+     */   
     public function get()
     {
-        var_dump($this->request);exit;
         $return = ConstantsUtility::ERROR_TYPE_ROUTE;
-        if(in_array($this->request['route'], ConstantsUtility::ROUTE_GET, true)) {
-            switch ($this->request['route']) {
+        if(in_array($this->request->getResource(), ConstantsUtility::METHOD_GET, true)) {
+            switch ($this->request->getResource()) {
                 case ConstantsUtility::PRODUCT:
-                    return 'getProduct';
+                    $return = (new ProductResource())->getProduct($this->request->getId());
                     break;
                 case ConstantsUtility::ORDER:
-                    return 'getOrder';
-                    break;
-                
+                    $return = (new OrderResource())->getOrder($this->request->getId()); 
+                    break;                
                 default:
-                    // code...
+                    $return = ConstantsUtility::ERROR_TYPE_ROUTE;
                     break;
             }
         }
+        return $return;
     }
 
     /**
      * Tratamento tipo post
-     * 
+     * @return Json|String|false
      */
     public function post()
-    {
-        return 'Validar dados POST'; 
+    {      
+        $return = ConstantsUtility::ERROR_TYPE_REQUEST;
+        if(in_array($this->request->getResource(), ConstantsUtility::METHOD_POST, true)) {   
+            if($this->validationDataPost()) {
+                switch ($this->request->getResource()) {           
+                    case ConstantsUtility::ORDER:
+                        $return = (new OrderResource())->setOrder($this->dataPost);
+                        break;                
+                    default:
+                        $return = ConstantsUtility::ERROR_TYPE_ROUTE;
+                        break;
+                }
+            } else {
+                $return = ConstantsUtility::ERROR_POST_DATA;
+            }            
+        }
+        return $return;         
     }
 
     /**
-     * Tratamento tipo delete
-     * 
+     * Solicita a validação do Token
+     * @return boolean
      */
-    public function delete()
+    private function validationTokenRequest()
     {
-        return 'deletar';
+        return (new TokenResource())->validation();
     }
 
+    /**
+     * Valida se ha conteudo em $_POST 
+     * @return boolean
+     */
+    private function validationDataPost()
+    {
+        $return = false;
+        $this->dataPost = file_get_contents('php://input');
+
+        if($this->dataPost != null) {
+            $this->dataPost = json_decode($this->dataPost,true,512, JSON_THROW_ON_ERROR); 
+            // if($this->dataPost != null) {
+            //     $return = true;
+            // }
+            if (is_array($this->dataPost) && count($this->dataPost) > 0) {
+                $return = true;
+            }
+        }
+        return $return;        
+    }
 }

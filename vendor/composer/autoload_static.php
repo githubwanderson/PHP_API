@@ -38,11 +38,11 @@ class ComposerStaticInit6dfac1105e5695063f48ed2482d2c677
 
     public static $classMap = array (
         'App\\Repository\\TokenRepository' => __DIR__ . '/../..' . '/App/Repository/TokenRepository.php',
+        'App\\Resource\\ProductResource' => __DIR__ . '/../..' . '/App/Resource/ProductResource.php',
         'App\\Resource\\RequestValidationResource' => __DIR__ . '/../..' . '/App/Resource/RequestValidationResource.php',
         'App\\Resource\\TokenValidationResource' => __DIR__ . '/../..' . '/App/Resource/TokenValidationResource.php',
         'App\\Service\\TokenService' => __DIR__ . '/../..' . '/App/Service/TokenService.php',
         'App\\Utility\\ConstantsUtility' => __DIR__ . '/../..' . '/App/Utility/ConstantsUtility.php',
-        'App\\Utility\\RoutesUtility' => __DIR__ . '/../..' . '/App/Utility/RoutesUtility.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Db\\Connect' => __DIR__ . '/../..' . '/Database/Connect.php',
         'Db\\Db' => __DIR__ . '/../..' . '/Database/Db.php',

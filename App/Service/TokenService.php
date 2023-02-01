@@ -13,8 +13,14 @@ class TokenService
         $this->TokenRepository = new TokenRepository();
     }
 
+	/**
+     * Solicita a verificação do Token
+     * @param Baren
+     * @return Boolean
+     * @return String
+     */
 	public function findToken($token)
 	{
-		return $this->TokenRepository->findToken($token);
+		return $this->TokenRepository->findById($token);
 	}
 }

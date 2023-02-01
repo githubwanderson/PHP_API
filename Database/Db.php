@@ -12,9 +12,7 @@ class Db extends Connect
     {
         parent::__construct();
         $this->table = $table;
-    }
-
-    
+    }    
 
     /**
      * Responsável por buscar muitos registros
