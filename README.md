@@ -6,7 +6,7 @@ MPlaceAPI se comunica com API fornecedor.
 
 Utilizado como exemplo o fornecedor @JsonPlaceHolder "jsonplaceholder.typicode.com/".
 
-Métodos / Rotas aceitos 
+Métodos / Rotas aceitos:
 * GET: api_mplace/api/products/getAll
 * GET: api_mplace/api/order/getById/{id}
 * POST: api_mplace/api/order/create
