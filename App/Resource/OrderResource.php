@@ -7,6 +7,13 @@ use App\Utility\ConstantsUtility;
 
 class OrderResource
 {
+	private $service;
+
+	public function __construct()
+	{
+		$this->service = new OrderService();
+	}
+
 	/**
      * Verifica se existe Id
 	 * @param Integer
@@ -18,7 +25,7 @@ class OrderResource
 		if($id === null) {
 			return ConstantsUtility::ERROR_TYPE_ROUTE;
 		}
-		return (new OrderService())->getById($id);
+		return $this->service->getById($id);
 	}
 
 	/**
@@ -29,6 +36,6 @@ class OrderResource
      */
 	public function setOrder($post)
 	{
-		return (new OrderService())->setOrder($post);
+		return $this->service->setOrder($post);
 	}
 }

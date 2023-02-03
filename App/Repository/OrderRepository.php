@@ -2,17 +2,15 @@
 
 namespace App\Repository;
 
-use App\Provider\FabricaDeCodigoProvider;
 use App\Provider\ProviderInterface;
-use App\Utility\ConstantsUtility;
 
 class OrderRepository
 {
 	private ProviderInterface $Provider; 
 
-	public function __construct()
+	public function __construct(ProviderInterface $Provider)
 	{
-		$this->Provider = new FabricaDeCodigoProvider;
+		$this->Provider = new $Provider;
 	}
 
 	/**

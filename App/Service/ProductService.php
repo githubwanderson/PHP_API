@@ -15,7 +15,7 @@ class ProductService
     }
 
 	/**
-     * Solicita todos os dados
+     * Solicita todos os produtos
      * @return Array
      * @return String 
      */

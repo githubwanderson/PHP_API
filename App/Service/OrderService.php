@@ -2,15 +2,16 @@
 
 namespace App\Service;
 
+use App\Provider\FabricaDeCodigoProvider;
 use App\Repository\OrderRepository;
 
 class OrderService
 {
-	private OrderRepository $OrderRepository;
+	private $OrderRepository;
 
     public function __construct()
     {
-        $this->OrderRepository = new OrderRepository();
+        $this->OrderRepository = new OrderRepository(new FabricaDeCodigoProvider());
     }
 
 	/**
