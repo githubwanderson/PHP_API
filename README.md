@@ -11,6 +11,8 @@ Métodos / Rotas aceitos:
 * GET: api_mplace/api/order/getById/{id}
 * POST: api_mplace/api/order/create
 
+Authorization: Bearen "xpto-4125-f412-4444".
+
 Para o método POST _api/order/create_ usar json:
 
 ```
@@ -19,5 +21,4 @@ Para o método POST _api/order/create_ usar json:
     "title": "Teste post request"
 }
 ```
-
 Arquivo DB no diretório raiz.
