@@ -2,15 +2,16 @@
 
 namespace App\Service;
 
+use App\Provider\FabricaDeCodigoProvider;
 use App\Repository\ProductRepository;
 
 class ProductService
 {
-	private ProductRepository $ProductRepository;
+	private $repository;
 
     public function __construct()
     {
-        $this->ProductRepository = new ProductRepository();
+        $this->repository = new ProductRepository(new FabricaDeCodigoProvider());
     }
 
 	/**
@@ -20,6 +21,6 @@ class ProductService
      */
 	public function getAll()
 	{
-		return $this->ProductRepository->getAll();
+		return $this->repository->getAll();
 	}
 }

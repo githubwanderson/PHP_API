@@ -7,6 +7,12 @@ use App\Utility\ConstantsUtility;
 
 class ProductResource
 {
+	private $service;
+
+	public function __construct()
+	{
+		$this->service = new ProductService();
+	}
 	/**
      * Verifica se existe Id
 	 * @param Integer
@@ -16,7 +22,7 @@ class ProductResource
 	public function getProduct($id = null)
 	{
 		if($id === null) {
-			return (new ProductService())->getAll();
+			return $this->service->getAll();
 		}
 		return ConstantsUtility::ERROR_TYPE_ROUTE;
 	}

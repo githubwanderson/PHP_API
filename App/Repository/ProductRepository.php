@@ -2,16 +2,15 @@
 
 namespace App\Repository;
 
-use App\Provider\FabricaDeCodigoProvider;
 use App\Provider\ProviderInterface;
 
 class ProductRepository
 {
-	private ProviderInterface $Provider; 
+	private $Provider; 
 
-	public function __construct()
+	public function __construct(ProviderInterface $Provider)
 	{
-		$this->Provider = new FabricaDeCodigoProvider;
+		$this->Provider = $Provider;
 	}
 	
 	/**

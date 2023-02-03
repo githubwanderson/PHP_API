@@ -64,7 +64,7 @@ class FabricaDeCodigoProvider implements ProviderInterface
 	public function get()
 	{
 		curl_setopt_array($this->curl, [
-			CURLOPT_URL 			=> self::URL_PROVIDER . self::GET_ORDER,
+			CURLOPT_URL 			=> self::URL_PROVIDER . self::GET_PRODUCT,
 			CURLOPT_CUSTOMREQUEST 	=> self::GET,
 			CURLOPT_RETURNTRANSFER 	=> true,
 			CURLOPT_HTTPHEADER		=> $this->headers
