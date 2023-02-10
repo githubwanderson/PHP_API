@@ -4,18 +4,31 @@ namespace Db;
 
 use Db\Connect;
 
+/**
+ * Classe responsável por fazer consultas no BD 
+ * @package class
+ * @author Wanderson Alves <emailwandersonalves@gmail.com>
+ */
 class Db extends Connect
 {
-    private $table;
+    /**
+     * Propriedade com a tabela do BD
+     * @var string
+     */
+    private string $table;
 
-    public function __construct($table)
+    /**
+     * Construtor
+     * @param string $table
+     */
+    public function __construct(string $table)
     {
         parent::__construct();
         $this->table = $table;
     }    
 
     /**
-     * Responsável por buscar muitos registros
+     * Método de busca multiplas no BD
      * @param string $where
      * @param string $join
      * @param string $order

@@ -4,30 +4,26 @@ namespace App\Repository;
 
 use Db\Db;
 use App\Utility\ConstantsUtility;
-use InvalidArgumentException;
 
 class TokenRepository
 {
 	private const TABLE = 'tokens';
     private const COLUMN_TOKEN = 'TOKEN';
-    private const COLUMN_CONDITION = 'ATIVO';
-    private const VALUE_CONDITION = '1';
-    private Db $Db;
+    private $Db;
 
-    public function __construct($request = [])
+    public function __construct()
     {
-        $this->Db = new DB(self::TABLE);
+        $this->Db = new Db(self::TABLE);
     }
 
     /**
      * Se comunica com DB e verifica se ha Token
-     * @param Baren
-     * @return Boolean
-     * @return String
+     * @param String token Baren
+     * @return true|String
      */
     public function findById($token)
     {
-    	$where = "TOKEN = \"$token\" AND ATIVO = 1";
+    	$where = self::COLUMN_TOKEN . " = \"$token\" AND ATIVO = 1";
 
 	    if($this->Db->findAll($where)->fetch(\PDO::FETCH_ASSOC)) {
 	    	return true;

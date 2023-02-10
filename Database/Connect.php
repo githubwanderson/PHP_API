@@ -4,12 +4,36 @@ namespace Db;
 
 use PDO;
 
-class Connect
+/**
+ * Classe abstrata responsavel por efetuar a conexão com o BD
+ * @package class
+ * @author Wanderson Alves <emailwandersonalves@gmail.com>
+ */
+abstract class Connect
 {
-    private $dsn = 'mysql:host=localhost;dbname=db_api_mplace';
-    private $user = 'root';
-    private $password = '';
-    protected $connection;
+    /**
+     * Propriedade com as tags de conexao | host | dbname
+     * @var string
+     */
+    private string $dsn = 'mysql:host=localhost;dbname=db_api_mplace';
+
+    /**
+     * Propriedade com o nome do usuario do BD
+     * @var string
+     */
+    private string $user = 'root';
+
+    /**
+     * Propriedade com a senha do usuario do BD
+     * @var string
+     */
+    private string $password = '';
+
+    /**
+     * Propriedade com obj PDO
+     * @var PDO
+     */
+    protected PDO $connection;
 
     public function __construct()
     {
@@ -17,7 +41,7 @@ class Connect
     }
 
     /**
-     * Responsável por conectar com o banco de dados
+     * Método que inicia a conexão com o BD
      * @return void
      */
     private function setConnection()
@@ -26,12 +50,12 @@ class Connect
             $this->connection = new PDO($this->dsn,$this->user,$this->password);   
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         } catch (\PDOException $e) {
-            die('Error connect database! ' . $e->getMessage());
+            die('Erro ao conectar no BD. ' . $e->getMessage());
         }
     }
 
     /**
-     * Responsável por executar uma query
+     * Método que executa uma query no BD
      * @param string $query
      * @param array<string> $params
      * @return \PDOStatement|bool
@@ -43,7 +67,7 @@ class Connect
            $statement->execute($params);
            return $statement;
         } catch (\PDOException $e) {
-            die('Error execute query! ' . $e->getMessage());
+            die('Erro ao executar a query no BD. ' . $e->getMessage());
         }        
     }
 }

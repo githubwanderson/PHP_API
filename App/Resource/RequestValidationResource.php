@@ -101,10 +101,7 @@ class RequestValidationResource
         $this->dataPost = file_get_contents('php://input');
 
         if($this->dataPost != null) {
-            $this->dataPost = json_decode($this->dataPost,true,512, JSON_THROW_ON_ERROR); 
-            // if($this->dataPost != null) {
-            //     $return = true;
-            // }
+            $this->dataPost = json_decode($this->dataPost,true,512, JSON_THROW_ON_ERROR);        
             if (is_array($this->dataPost) && count($this->dataPost) > 0) {
                 $return = true;
             }
